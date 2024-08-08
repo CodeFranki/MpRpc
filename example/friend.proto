@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package fixbug;
+
+option cc_generic_services = true;
+
+message ResultCode{
+    uint32 errcode =1;
+    bytes errmsg =2;
+}
+
+message GetFriendListRequest{
+    uint32 id = 1;
+}
+
+message GetFriendListResponse{
+    ResultCode result = 1;
+    repeated bytes friends = 2;
+}
+
+service FriendServiceRpc{
+    rpc GetFriendLists(GetFriendListRequest) returns(GetFriendListResponse);     // 这个Login的名称与cc文件里面的函数名称可以不相等，但是建议相等
+
+}
